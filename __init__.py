@@ -87,9 +87,6 @@ def fiche_nom(post_nom):
     if estauthentifie():
         # Rediriger vers la page d'authentification si l'utilisateur n'est pas authentifié
         return redirect(url_for('authentification'))
-
-  # Si l'utilisateur est authentifié
-    return "<h2>Vous êtes authentifié</h2>"
     
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
