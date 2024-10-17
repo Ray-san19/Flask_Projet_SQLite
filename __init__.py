@@ -41,11 +41,13 @@ def authentification():
         # Vérifier les identifiants
         if request.form['username'] == 'admin' and request.form['password'] == 'password': # password à cacher par la suite
             session['authentifie'] = True
+            session['authentifier'] = False
             # Rediriger vers la route lecture après une authentification réussie
             return redirect(url_for('lecture'))
 
         elif request.form['username'] == 'user' and request.form['password'] == '12345': # password à cacher par la suite
             session['authentifier'] = True
+            session['authentifie'] = False
             # Rediriger vers la route lecture après une authentification réussie
             return redirect(url_for('lecture'))
         else:
