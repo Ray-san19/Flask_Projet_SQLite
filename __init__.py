@@ -27,6 +27,13 @@ def lecture():
 
   # Si l'utilisateur est authentifié
     return "<h2>Bravo, vous êtes authentifié</h2>"
+    
+    if not estauthentifie():
+        # Rediriger vers la page d'authentification si l'utilisateur n'est pas authentifié
+        return redirect(url_for('authentification'))
+
+  # Si l'utilisateur est authentifié
+    return "<h2>Bravo, vous êtes authentifié pour user</h2>"
 
 @app.route('/authentification', methods=['GET', 'POST'])
 def authentification():
@@ -84,11 +91,7 @@ def enregistrer_client():
 
 @app.route('/fiche_nom/<post_nom>')
 def fiche_nom(post_nom):
-     if not estauthentifie():
-        # Rediriger vers la page d'authentification si l'utilisateur n'est pas authentifié
-        return redirect(url_for('authentification'))
-
-     else
+     if estauthentifie():
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM clients WHERE Nom = ?', (post_nom,))
