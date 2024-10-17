@@ -81,7 +81,7 @@ def enregistrer_client():
 def fiche_nom(post_nom):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM clients WHERE nom = ?', (post_nom,))
+    cursor.execute('SELECT * FROM clients WHERE Nom = ?', (post_nom,))
     data = cursor.fetchall()
     conn.close()
     return render_template('read_data.html', data=data)
