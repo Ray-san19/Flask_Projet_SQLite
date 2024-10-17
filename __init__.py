@@ -75,7 +75,6 @@ def enregistrer_client():
     
 
 @app.route('/fiche_nom/<post_nom>')
-@requires_auth
 def fiche_nom(post_nom):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
@@ -84,7 +83,21 @@ def fiche_nom(post_nom):
     conn.close()
     
     return render_template('read_data.html', data=data)
-    
+
+
+@app.route('/authentification_user', methods=['GET', 'POST'])
+def authentification_user():
+    if request.method == 'POST':
+        # Vérifier les identifiants utilisateur
+        if request.form['username'] == 'user' and request.form['password'] == '12345':  # À sécuriser par la suite
+            session['user_authentifie'] = True
+            # Rediriger vers la route fiche_nom après une authentification réussie
+            return redirect(request.args.get('next') or url_for('ReadBDD'))
+        else:
+            # Afficher un message d'erreur si les identifiants sont incorrects
+            return render_template('formulaire_authentification_user.html', error=True)
+
+    return render_template('formulaire_authentification_user.html', error=False)
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
