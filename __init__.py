@@ -78,10 +78,10 @@ def enregistrer_client():
     return redirect('/consultation/')  # Rediriger vers la page d'accueil après l'enregistrement
 
 @app.route('/fiche_nom/<int:post_nom>')
-def fiche_nom():
+def fiche_nom(post_nom):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM clients WHERE nom = ?', (post_id,))
+    cursor.execute('SELECT * FROM clients WHERE nom = ?', (post_nom,))
     data = cursor.fetchall()
     conn.close()
     return render_template('read_data.html', data=data)
