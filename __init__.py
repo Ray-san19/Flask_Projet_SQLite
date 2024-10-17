@@ -66,32 +66,13 @@ def formulaire_client():
 def enregistrer_client():
     nom = request.form['nom']
     prenom = request.form['prenom']
-
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-
     cursor.execute('INSERT INTO clients (created, nom, prenom, adresse) VALUES (?, ?, ?, ?)', (1002938, nom, prenom, "ICI"))
     conn.commit()
     conn.close()
     return redirect('/consultation/')  
     
-def check_auth(username, password):
-    return username == 'user' and password == '12345'
-
-def authenticate():
-    return Response(
-        'Authentification requise.\n'
-        'Veuillez entrer les bonnes informations de connexion.', 401,
-        {'WWW-Authenticate': 'Basic realm="Login requis"'})
-
-def requires_auth(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        auth = request.authorization
-        if not auth or not check_auth(auth.username, auth.password):
-            return authenticate()
-        return f(*args, **kwargs)
-    return decorated
 
 @app.route('/fiche_nom/<post_nom>')
 @requires_auth
