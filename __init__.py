@@ -85,16 +85,13 @@ def enregistrer_client():
 @app.route('/fiche_nom/<post_nom>')
 def fiche_nom(post_nom):
     if estauthentifie():
-        # Rediriger vers la page d'authentification si l'utilisateur n'est pas authentifié
-        return redirect(url_for('authentification'))
-    
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM clients WHERE Nom = ?', (post_nom,))
-    data = cursor.fetchall()
-    conn.close()
-    
-    return render_template('read_data.html', data=data)
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM clients WHERE Nom = ?', (post_nom,))
+        data = cursor.fetchall()
+        conn.close()
+        
+        return render_template('read_data.html', data=data)
 
                                                                                                                                        
 if __name__ == "__main__":
