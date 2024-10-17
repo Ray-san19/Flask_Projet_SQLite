@@ -60,30 +60,48 @@ def ReadBDD():
 
 @app.route('/enregistrer_client', methods=['GET'])
 def formulaire_client():
-    return render_template('formulaire.html')  # afficher le formulaire
+    return render_template('formulaire.html') 
 
 @app.route('/enregistrer_client', methods=['POST'])
 def enregistrer_client():
     nom = request.form['nom']
     prenom = request.form['prenom']
 
-    # Connexion à la base de données
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
 
-    # Exécution de la requête SQL pour insérer un nouveau client
     cursor.execute('INSERT INTO clients (created, nom, prenom, adresse) VALUES (?, ?, ?, ?)', (1002938, nom, prenom, "ICI"))
     conn.commit()
     conn.close()
-    return redirect('/consultation/')  # Rediriger vers la page d'accueil après l'enregistrement
+    return redirect('/consultation/')  
+    
+def check_auth(username, password):
+    return username == 'user' and password == '12345'
+
+def authenticate():
+    return Response(
+        'Authentification requise.\n'
+        'Veuillez entrer les bonnes informations de connexion.', 401,
+        {'WWW-Authenticate': 'Basic realm="Login requis"'})
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
 
 @app.route('/fiche_nom/<post_nom>')
+@requires_auth
 def fiche_nom(post_nom):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM clients WHERE Nom = ?', (post_nom,))
     data = cursor.fetchall()
     conn.close()
+    
     return render_template('read_data.html', data=data)
     
                                                                                                                                        
