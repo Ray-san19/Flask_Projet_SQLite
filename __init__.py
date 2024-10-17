@@ -40,7 +40,7 @@ def authentification():
         elif request.form['username'] == 'user' and request.form['password'] == '12345': # password à cacher par la suite
             session['authentifier'] = True
             # Rediriger vers la route lecture après une authentification réussie
-            return redirect(url_for('fiche_nom'))
+            return redirect(url_for('lecture'))
         else:
             # Afficher un message d'erreur si les identifiants sont incorrects
             return render_template('formulaire_authentification.html', error=True)
@@ -84,7 +84,7 @@ def enregistrer_client():
 
 @app.route('/fiche_nom/<post_nom>')
 def fiche_nom(post_nom):
-    if estauthentifie():
+    if not estauthentifie():
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM clients WHERE Nom = ?', (post_nom,))
