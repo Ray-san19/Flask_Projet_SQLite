@@ -13,7 +13,7 @@ CREATE TABLE livres (
     nom TEXT NOT NULL
 );
 
-DROP TABLE IF EXISTS empruntretour
+DROP TABLE IF EXISTS empruntretour;
 CREATE TABLE empruntretour (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER,
