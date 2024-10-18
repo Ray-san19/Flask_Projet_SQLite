@@ -78,6 +78,21 @@ def ReadBDD():
 @app.route('/enregistrer_client', methods=['GET'])
 def formulaire_client():
     return render_template('formulaire.html') 
+
+@app.route('/enregistrer_client', methods=['POST'])
+def enregistrer_client():
+    nom = request.form['nom']
+    prenom = request.form['prenom']
+
+    # Connexion à la base de données
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    # Exécution de la requête SQL pour insérer un nouveau client
+    cursor.execute('INSERT INTO clients (created, nom, prenom, adresse) VALUES (?, ?, ?, ?)', (1002938, nom, prenom, "ICI"))
+    conn.commit()
+    conn.close()
+    return redirect('/consultation/')  # Rediriger vers la page d'accueil après l'enregistrement
     
 
 @app.route('/fiche_nom/<post_nom>')
@@ -91,11 +106,12 @@ def fiche_nom(post_nom):
         
         return render_template('read_data.html', data=data)
 
-@app.route('/enregistrer_livres', methods=['GET', 'POST'])
+@app.route('/enregistrer_livres', methods=['GET'])
 def ajouter_livre():
-    if not est_authentifie():
-        return redirect(url_for('authentification'))
+    return render_template('formulaire_livres.html')
 
+@app.route('/enregistrer_client', methods=['POST'])
+def enregistrer_client():
     if request.method == 'POST':
         titre = request.form['titre']
        
@@ -107,8 +123,7 @@ def ajouter_livre():
 
         return redirect(url_for('dashboard_admin'))
 
-    return render_template('formulaire_livres.html')
- 
+
 # Route pour les admins (gestion de la bibliothèque)
 @app.route('/admin')
 def dashboard_admin():
