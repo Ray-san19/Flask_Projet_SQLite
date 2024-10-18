@@ -110,9 +110,8 @@ def fiche_nom(post_nom):
 def ajouter_livre():
     return render_template('formulaire_livres.html')
 
-@app.route('/enregistrer_client', methods=['POST'])
-def enregistrer_client():
-    if request.method == 'POST':
+@app.route('/enregistrer_livres', methods=['POST'])
+def enregistrer_livres():
         titre = request.form['titre']
        
         conn = sqlite3.connect('database.db')
@@ -121,12 +120,12 @@ def enregistrer_client():
         conn.commit()
         conn.close()
 
-        return redirect(url_for('dashboard_admin'))
+        return redirect(url_for('consultation_livres'))
 
 
 # Route pour les admins (gestion de la bibliothèque)
-@app.route('/admin')
-def dashboard_admin():
+@app.route('/consultation_livres')
+def consultation_livres():
     if not est_authentifie():
         return redirect(url_for('authentification'))
     
