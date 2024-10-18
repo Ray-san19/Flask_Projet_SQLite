@@ -23,6 +23,6 @@ CREATE TABLE empruntretour (
         returned BOOLEAN DEFAULT 0,
         FOREIGN KEY (user_id) REFERENCES clients(id),
         FOREIGN KEY (book_id) REFERENCES livres(id)
-
+);
 
 
