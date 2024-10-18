@@ -13,14 +13,13 @@ CREATE TABLE livres (
     nom TEXT NOT NULL
 );
 
-DROP TABLE IF EXISTS empruntretour;
-CREATE TABLE empruntretour (
+DROP TABLE IF EXISTS emprunt;
+CREATE TABLE emprunt (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         user_id INTEGER,
         book_id INTEGER,
-        emprunt_date DATE,
         return_date DATE,
-        returned BOOLEAN DEFAULT 0,
         FOREIGN KEY (user_id) REFERENCES clients(id),
         FOREIGN KEY (book_id) REFERENCES livres(id)
 );
