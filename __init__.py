@@ -108,7 +108,7 @@ def ajouter_livre():
         return redirect(url_for('authentification'))
 
     if request.method == 'POST':
-        titre = request.form['titre']
+      
 
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
