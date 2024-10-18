@@ -130,7 +130,7 @@ def consultation_livres():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM livres')
-    livres = cursor.fetchall()
+    data = cursor.fetchall()
     conn.close()
     return render_template('read_data_livres.html', data=data)
  
