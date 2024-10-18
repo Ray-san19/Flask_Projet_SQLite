@@ -78,17 +78,6 @@ def ReadBDD():
 @app.route('/enregistrer_client', methods=['GET'])
 def formulaire_client():
     return render_template('formulaire.html') 
-
-@app.route('/enregistrer_client', methods=['POST'])
-def enregistrer_client():
-    nom = request.form['nom']
-    prenom = request.form['prenom']
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
-    cursor.execute('INSERT INTO clients (created, nom, prenom, adresse) VALUES (?, ?, ?, ?)', (1002938, nom, prenom, "ICI"))
-    conn.commit()
-    conn.close()
-    return redirect('/consultation/')  
     
 
 @app.route('/fiche_nom/<post_nom>')
