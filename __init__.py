@@ -102,6 +102,9 @@ def fiche_nom(post_nom):
         
         return render_template('read_data.html', data=data)
 
+@app.route('/enregistrer_livres', methods=['GET'])
+def formulaire_livres():
+    return render_template('formulaire_livres.html') 
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
