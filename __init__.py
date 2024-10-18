@@ -136,16 +136,13 @@ def consultation_livres():
  
 @app.route('/supprimer_livre/<int:id>')
 def supprimer_livre(id):
-    if not est_authentifie():
-        return redirect(url_for('authentification'))
-
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('DELETE FROM livres WHERE id = ?', (id,))
     conn.commit()
     conn.close()
 
-    return redirect(url_for('dashboard_admin'))
+    return redirect(url_for('consultation_livres'))
 
 @app.route('/logout')
 def logout():
