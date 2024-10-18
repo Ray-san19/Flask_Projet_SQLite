@@ -116,7 +116,7 @@ def enregistrer_livres():
        
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO livres (titre) VALUES (?)', ("t"))
+        cursor.execute('INSERT INTO livres (titre) VALUES (?)', (titre))
         conn.commit()
         conn.close()
 
