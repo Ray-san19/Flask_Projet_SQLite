@@ -112,7 +112,7 @@ def ajouter_livre():
 
         conn = sqlite3.connect('bibliotheque.db')
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO livres (livres) VALUES (?)', (titre))
+        cursor.execute('INSERT INTO livres (titre) VALUES (?)', (titre))
         conn.commit()
         conn.close()
 
