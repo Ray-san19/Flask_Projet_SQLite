@@ -163,8 +163,6 @@ def emprunter_livre(id):
         conn.commit()
         conn.close()
         return redirect(url_for('consultation_livres'))
-    else:
-        return redirect(url_for('authentification'))
 
 # --- Nouvelle route pour retourner un livre ---
 @app.route('/retourner/<int:livre_id>')
@@ -179,8 +177,6 @@ def retourner_livre(livre_id):
         conn.commit()
         conn.close()
         return redirect(url_for('consultation_livres'))
-    else: 
-        return redirect(url_for('authentification'))
 
 @app.route('/logout')
 def logout():
