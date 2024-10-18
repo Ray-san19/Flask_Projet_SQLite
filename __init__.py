@@ -144,6 +144,35 @@ def supprimer_livre(id):
 
     return redirect(url_for('consultation_livres'))
 
+@app.route('/emprunter_livre/<int:id>')
+def emprunter_livre(id):
+
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    # Enregistrer l'emprunt dans la table loans
+    cursor.execute('INSERT INTO loans (user_id, book_id, loan_date) VALUES (?, ?, ?)', 
+                   (session['user_id'], id, datetime.now().date()))
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for('consultation_livres'))
+
+# Route pour retourner un livre (utilisateur seulement)
+@app.route('/retourner_livre/<int:id>')
+def retourner_livre(id):
+
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    # Marquer l'emprunt comme retourné dans la table loans
+    cursor.execute('UPDATE loans SET returned = 1, return_date = ? WHERE book_id = ? AND user_id = ? AND returned = 0', 
+                   (datetime.now().date(), id, session['user_id']))
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for('consultation_livres'))
+
 @app.route('/logout')
 def logout():
     session.clear()
