@@ -104,7 +104,7 @@ def fiche_nom(post_nom):
 
 @app.route('/enregistrer_livres', methods=['GET', 'POST'])
 def ajouter_livre():
-    if not est_authent():
+    if not est_authentifie():
         return redirect(url_for('authentification'))
 
     if request.method == 'POST':
