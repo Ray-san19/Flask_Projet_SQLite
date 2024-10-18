@@ -112,11 +112,11 @@ def ajouter_livre():
 
 @app.route('/enregistrer_livres', methods=['POST'])
 def enregistrer_livres():
-        titre = request.form['titre']
+        nom = request.form['nom']
        
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO livres (titre) VALUES (?)', (titre))
+        cursor.execute('INSERT INTO livres (nom) VALUES (?)', (nom,))
         conn.commit()
         conn.close()
 
