@@ -146,32 +146,41 @@ def supprimer_livre(id):
 
 @app.route('/emprunter_livre/<int:id>')
 def emprunter_livre(id):
+    if estauthentifie():
+        client_id = session['user_id']  # Récupérer l'ID de l'utilisateur dans la session
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
 
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
+        # Vérifier si le livre n'est pas déjà emprunté
+        cursor.execute('SELECT * FROM emprunts WHERE livre_id = ? AND date_retour IS NULL', (livre_id,))
+        emprunt = cursor.fetchone()
 
-    # Enregistrer l'emprunt dans la table loans
-    cursor.execute('INSERT INTO loans (user_id, book_id, loan_date) VALUES (?, ?, ?)', 
-                   (session['user_id'], id, datetime.now().date()))
-    conn.commit()
-    conn.close()
+        if emprunt:
+            return "<h2>Ce livre est déjà emprunté !</h2>"
 
-    return redirect(url_for('consultation_livres'))
+        # Insérer un nouvel emprunt
+        cursor.execute('INSERT INTO emprunts (client_id, livre_id, date_emprunt) VALUES (?, ?, ?)',(client_id, livre_id, datetime.now()))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('consultation_livres'))
+    else:
+        return redirect(url_for('authentification'))
 
-# Route pour retourner un livre (utilisateur seulement)
-@app.route('/retourner_livre/<int:id>')
-def retourner_livre(id):
+# --- Nouvelle route pour retourner un livre ---
+@app.route('/retourner/<int:livre_id>')
+def retourner_livre(livre_id):
+    if estauthentifie():
+        client_id = session['user_id']
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
 
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
-
-    # Marquer l'emprunt comme retourné dans la table loans
-    cursor.execute('UPDATE loans SET returned = 1, return_date = ? WHERE book_id = ? AND user_id = ? AND returned = 0', 
-                   (datetime.now().date(), id, session['user_id']))
-    conn.commit()
-    conn.close()
-
-    return redirect(url_for('consultation_livres'))
+        # Mettre à jour l'emprunt avec la date de retour
+        cursor.execute('UPDATE emprunts SET date_retour = ? WHERE client_id = ? AND livre_id = ? AND date_retour IS NULL',(datetime.now(), client_id, livre_id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('consultation_livres'))
+    else: 
+        return redirect(url_for('authentification'))
 
 @app.route('/logout')
 def logout():
