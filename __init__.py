@@ -110,7 +110,7 @@ def ajouter_livre():
     if request.method == 'POST':
         titre = request.form['titre']
 
-        conn = sqlite3.connect('bibliotheque.db')
+        conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         cursor.execute('INSERT INTO livres (titre) VALUES (?)', (titre))
         conn.commit()
