@@ -102,9 +102,53 @@ def fiche_nom(post_nom):
         
         return render_template('read_data.html', data=data)
 
-@app.route('/enregistrer_livres', methods=['GET'])
-def formulaire_livres():
-    return render_template('formulaire_livres.html') 
+@app.route('/enregistrer_livres', methods=['GET', 'POST'])
+def ajouter_livre():
+    if not est_authent():
+        return redirect(url_for('authentification'))
+
+    if request.method == 'POST':
+        titre = request.form['titre']
+
+        conn = sqlite3.connect('bibliotheque.db')
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO livres (livres) VALUES (?)', (titre))
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for('dashboard_admin'))
+
+    return render_template('ajouter_livre.html')
+# Route pour les admins (gestion de la bibliothèque)
+@app.route('/admin')
+def dashboard_admin():
+    if not est_authentifie():
+        return redirect(url_for('authentification'))
+    
+    # Récupérer tous les livres depuis la base de données
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM livres')
+    livres = cursor.fetchall()
+    conn.close()
+ 
+@app.route('/supprimer_livre/<int:id>')
+def supprimer_livre(id):
+    if not est_authentifie():
+        return redirect(url_for('authentification'))
+
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM livres WHERE id = ?', (id,))
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for('dashboard_admin'))
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('authentification'))
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
