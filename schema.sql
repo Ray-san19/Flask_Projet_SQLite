@@ -13,5 +13,16 @@ CREATE TABLE livres (
     nom TEXT NOT NULL
 );
 
+DROP TABLE IF EXISTS empruntretour
+CREATE TABLE IF NOT EXISTS empruntretour (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        book_id INTEGER,
+        emprunt_date DATE,
+        return_date DATE,
+        returned BOOLEAN DEFAULT 0,
+        FOREIGN KEY (user_id) REFERENCES clients(id),
+        FOREIGN KEY (book_id) REFERENCES livres(id)
+
 
 
