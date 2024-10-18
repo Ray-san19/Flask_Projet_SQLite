@@ -126,15 +126,13 @@ def enregistrer_livres():
 # Route pour les admins (gestion de la bibliothèque)
 @app.route('/consultation_livres')
 def consultation_livres():
-    if not est_authentifie():
-        return redirect(url_for('authentification'))
-    
     # Récupérer tous les livres depuis la base de données
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM livres')
     livres = cursor.fetchall()
     conn.close()
+    return render_template('read_data_livres.html', data=data)
  
 @app.route('/supprimer_livre/<int:id>')
 def supprimer_livre(id):
