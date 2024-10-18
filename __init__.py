@@ -118,7 +118,8 @@ def ajouter_livre():
 
         return redirect(url_for('dashboard_admin'))
 
-    return render_template('ajouter_livre.html')
+    return render_template('formulaire_livres.html')
+ 
 # Route pour les admins (gestion de la bibliothèque)
 @app.route('/admin')
 def dashboard_admin():
