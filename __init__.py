@@ -145,6 +145,19 @@ def supprimer_livre(id):
     return redirect(url_for('consultation_livres'))
 
 @app.route('/emprunter_livre/<int:livre_id>', methods=['GET', 'POST'])
+def livre_à_emprunter(livre_id):
+    conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM clients')
+        clients = cursor.fetchall()
+        conn.close()
+        
+    return render_template('emprunter_livre.html', clients=clients, livre_id=livre_id)
+
+
+
+
+@app.route('/emprunter_livre/<int:livre_id>', methods=['GET', 'POST'])
 def emprunter_livre(livre_id):
     if request.method == 'POST':
         user_id = request.form['user_id']
@@ -155,14 +168,7 @@ def emprunter_livre(livre_id):
         conn.close()
         return redirect(url_for('consultation_livres'))
     
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM clients')
-    clients = cursor.fetchall()
-    conn.close()
     
-    return render_template('emprunter_livre.html', clients=clients, livre_id=livre_id)
-
 # --- Nouvelle route pour retourner un livre ---
 @app.route('/retourner/<int:livre_id>')
 def retourner_livre(livre_id):
