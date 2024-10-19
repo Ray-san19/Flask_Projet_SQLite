@@ -148,7 +148,7 @@ def supprimer_livre(id):
 def livre_à_emprunter(livre_id):
     conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM clients')
+        cursor.execute('SELECT * FROM livres')
         clients = cursor.fetchall()
         conn.close()
         
@@ -184,7 +184,7 @@ def retourner_livre(livre_id):
         return redirect(url_for('consultation_livres_emprunt'))
 
 @app.route('/consultation_livres_emprunt')
-def consultation_livres():
+def consultation_livres_emprunt():
     # Récupérer tous les livres depuis la base de données
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
