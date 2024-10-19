@@ -145,7 +145,7 @@ def supprimer_livre(id):
 
 @app.route('/emprunter_livre/<int:livre_id>', methods=['GET', 'POST'])
 def livre_à_emprunter(livre_id):      
-    return render_template('emprunter_livre.html')
+    return render_template('emprunter_livres.html')
 
 
 @app.route('/emprunter_livre/<int:livre_id>', methods=['GET', 'POST'])
