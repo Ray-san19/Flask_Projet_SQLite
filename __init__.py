@@ -112,8 +112,7 @@ def ajouter_livre():
 
 @app.route('/enregistrer_livres', methods=['POST'])
 def enregistrer_livres():
-        nom = request.form['nom']
-       
+        nom = request.form['nom']  
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         cursor.execute('INSERT INTO livres (nom) VALUES (?)', (nom,))
@@ -147,6 +146,7 @@ def supprimer_livre(id):
 @app.route('/emprunter_livre/<int:livre_id>', methods=['GET', 'POST'])
 def livre_à_emprunter(livre_id):      
     return render_template('emprunter_livre.html')
+
 
 @app.route('/emprunter_livre/<int:livre_id>', methods=['GET', 'POST'])
 def emprunter_livre(livre_id):
