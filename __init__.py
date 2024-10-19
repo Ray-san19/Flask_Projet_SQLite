@@ -144,25 +144,24 @@ def supprimer_livre(id):
 
     return redirect(url_for('consultation_livres'))
 
-@app.route('/emprunter_livre/<int:id>')
-def emprunter_livre(id):
-    if estauthentifie():
-        client_id = session['user_id']  # Récupérer l'ID de l'utilisateur dans la session
+@app.route('/emprunter_livre/<int:livre_id>', methods=['GET', 'POST'])
+def emprunter_livre(livre_id):
+    if request.method == 'POST':
+        user_id = request.form['user_id']
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-
-        # Vérifier si le livre n'est pas déjà emprunté
-        cursor.execute('SELECT * FROM emprunts WHERE livre_id = ? AND date_retour IS NULL', (livre_id,))
-        emprunt = cursor.fetchone()
-
-        if emprunt:
-            return "<h2>Ce livre est déjà emprunté !</h2>"
-
-        # Insérer un nouvel emprunt
-        cursor.execute('INSERT INTO emprunts (client_id, livre_id, date_emprunt) VALUES (?, ?, ?)',(client_id, livre_id, datetime.now()))
+        cursor.execute('INSERT INTO loans (user_id, book_id, loan_date) VALUES (?, ?, CURRENT_DATE)', (user_id, livre_id))
         conn.commit()
         conn.close()
         return redirect(url_for('consultation_livres'))
+    
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM clients')
+    clients = cursor.fetchall()
+    conn.close()
+    
+    return render_template('emprunter_livre.html', clients=clients, livre_id=livre_id)
 
 # --- Nouvelle route pour retourner un livre ---
 @app.route('/retourner/<int:livre_id>')
@@ -176,7 +175,17 @@ def retourner_livre(livre_id):
         cursor.execute('UPDATE emprunts SET date_retour = ? WHERE client_id = ? AND livre_id = ? AND date_retour IS NULL',(datetime.now(), client_id, livre_id))
         conn.commit()
         conn.close()
-        return redirect(url_for('consultation_livres'))
+        return redirect(url_for('consultation_livres_emprunt'))
+
+@app.route('/consultation_livres_emprunt')
+def consultation_livres():
+    # Récupérer tous les livres depuis la base de données
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM livres')
+    data = cursor.fetchall()
+    conn.close()
+    return render_template('read_data_emprunt.html', data=data)
 
 @app.route('/logout')
 def logout():
