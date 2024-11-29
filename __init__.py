@@ -133,7 +133,7 @@ def consultation_livres():
     conn.close()
     return render_template('read_data_livres.html', data=data)
  
-@app.route('/supprimer_livre/<int:id>')
+@app.route('/supprimer_livre<int:id>')
 def supprimer_livre(id):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
@@ -144,7 +144,7 @@ def supprimer_livre(id):
     return redirect(url_for('consultation_livres'))    
     
 
-@app.route('/emprunter_livre/<int:livre_id>', methods=['GET', 'POST'])
+@app.route('/emprunter_livre', methods=['GET', 'POST'])
 def emprunter_livre(livre_id):
  return render_template('emprunt_livres.html')
     if request.method == 'POST':
