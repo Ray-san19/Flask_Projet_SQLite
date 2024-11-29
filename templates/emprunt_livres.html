@@ -1,18 +1,15 @@
 
 <div class="container bottomForm">
-    <h2 class="text-center">Fiche pour les livres</h2>
+    <h2 class="text-center">Fiche pour emprunter un livre</h2>
     <div class="row">
         <div class="col-sm-3"></div>
-        <form method="POST">
-            <label for="user_id">Sélectionnez l'utilisateur :</label>
-            <select name="user_id">
-                {% for client in clients %}
-                <option value="{{ client[0] }}">{{ client[2] }} {{ client[3] }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="Emprunter">
+        <form action="./emprunt_livres" method="POST">
+            <label for="nom">ID_Client :</label>
+            <input type="text" id="nom" name="nom" required><br><br>
+            <label for="prenom">ID_livres:</label>
+            <input type="text" id="prenom" name="prenom" required><br><br>
+            <button type="submit">Enregistrer</button>
         </form>
-        <div class="col-sm-3"></div>
     </div>
 </div>
 
