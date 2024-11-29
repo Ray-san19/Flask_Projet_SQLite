@@ -18,10 +18,10 @@ CREATE TABLE emprunt (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         user_id INTEGER,
-        book_id INTEGER,
+        livre_id INTEGER,
         return_date DATE,
         FOREIGN KEY (user_id) REFERENCES clients(id),
-        FOREIGN KEY (book_id) REFERENCES livres(id)
+        FOREIGN KEY (livre_id) REFERENCES livres(id)
 );
 
 
