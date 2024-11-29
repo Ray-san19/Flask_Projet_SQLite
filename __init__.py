@@ -148,16 +148,7 @@ def livre_à_emprunter(livre_id):
     return render_template('emprunt_livres.html')
 
 
-@app.route('/emprunter_livre/<int:livre_id>', methods=['GET', 'POST'])
-def emprunter_livre(livre_id):
-    if request.method == 'POST':
-        user_id = request.form['user_id']
-        conn = sqlite3.connect('database.db')
-        cursor = conn.cursor()
-        cursor.execute('INSERT INTO loans (user_id, book_id, loan_date) VALUES (?, ?, CURRENT_DATE)', (user_id, livre_id))
-        conn.commit()
-        conn.close()
-        return redirect(url_for('consultation_livres_emprunt'))
+
     
     
 # --- Nouvelle route pour retourner un livre ---
