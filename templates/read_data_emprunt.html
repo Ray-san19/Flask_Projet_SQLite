@@ -1,24 +1,19 @@
+<title>Client</title>
 <table>
     <tr>
-        <th>Livre</th>
-        <th>Utilisateur</th>
-        <th>Date d'emprunt</th>
-        <th>Retourner</th>
-    </tr>
-    {% for loan in loans %}
-    <tr>
-        <td>{{ loan.livre_nom }}</td>
-        <td>{{ loan.client_nom }}</td>
-        <td>{{ loan.loan_date }}</td>
-        <td>
-            {% if not loan.returned %}
-            <form method="POST" action="{{ url_for('retourner_livre', loan_id=loan.id) }}">
-                <input type="submit" value="Retourner">
-            </form>
-            {% else %}
-            Déjà retourné
-            {% endif %}
-        </td>
-    </tr>
+            <th>ID</th>
+            <th>ID_Client</th>
+            <th>ID_Livre</th>
+            <th>Date d'emprunt</th>
+            <th>Date de retour</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+        </tr>
     {% endfor %}
 </table>
