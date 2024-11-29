@@ -144,11 +144,11 @@ def supprimer_livre(id):
     return redirect(url_for('consultation_livres'))    
     
 
-@app.route('/emprunt_livre', methods=['GET', 'POST'])
+@app.route('/emprunt_livre', methods=['GET'])
 def emprunt_livre():
     return render_template('emprunt_livres.html')
 
-@app.route('/emprunter_livre', methods=['GET', 'POST'])
+@app.route('/emprunt_livre', methods=['POST'])
 def emprunter_livre(): 
     if request.method == 'POST':
         user_id = request.form['user_id']
