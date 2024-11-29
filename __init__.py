@@ -145,10 +145,14 @@ def supprimer_livre(id):
     
 
 @app.route('/emprunt_livre', methods=['GET', 'POST'])
-def emprunter_livre(livre_id):
-        return render_template('emprunt_livres.html')
+def emprunt_livre(livre_id):
+    return render_template('emprunt_livres.html')
+
+@app.route('/emprunt_livre', methods=['GET', 'POST'])
+def emprunter_livre(livre_id): 
     if request.method == 'POST':
         user_id = request.form['user_id']
+        livre_id = request.form['livre_id']
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         cursor.execute('INSERT INTO loans (user_id, livre_id, loan_date) VALUES (?, ?, CURRENT_DATE)', (user_id, livre_id))
