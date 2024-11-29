@@ -141,15 +141,20 @@ def supprimer_livre(id):
     conn.commit()
     conn.close()
 
-    return redirect(url_for('consultation_livres'))
+    return redirect(url_for('consultation_livres'))    
+    
 
 @app.route('/emprunter_livre/<int:livre_id>', methods=['GET', 'POST'])
-def livre_à_emprunter(livre_id):      
-    return render_template('emprunt_livres.html')
-
-
-
-    
+def emprunter_livre(livre_id):
+ return render_template('emprunt_livres.html')
+    if request.method == 'POST':
+        user_id = request.form['user_id']
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO loans (user_id, livre_id, loan_date) VALUES (?, ?, CURRENT_DATE)', (user_id, livre_id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('consultation_livres_emprunt'))
     
 # --- Nouvelle route pour retourner un livre ---
 @app.route('/retourner/<int:livre_id>')
