@@ -95,17 +95,6 @@ def enregistrer_client():
     return redirect('/consultation/')  # Rediriger vers la page d'accueil après l'enregistrement
     
 
-@app.route('/fiche_nom/<post_nom>')
-def fiche_nom(post_nom):
-     if estauthentifie():
-        conn = sqlite3.connect('database.db')
-        cursor = conn.cursor()
-        cursor.execute('SELECT * FROM clients WHERE Nom = ?', (post_nom,))
-        data = cursor.fetchall()
-        conn.close()
-        
-        return render_template('read_data.html', data=data)
-
 @app.route('/enregistrer_livres', methods=['GET'])
 def ajouter_livre():
     return render_template('formulaire_livres.html')
