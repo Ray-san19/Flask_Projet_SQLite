@@ -19,7 +19,7 @@ CREATE TABLE emprunt (
         created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         user_id INTEGER,
         livre_id INTEGER,
-        return_date DATE,
+        return_date TEXT NOT NULL,
         FOREIGN KEY (user_id) REFERENCES clients(id),
         FOREIGN KEY (livre_id) REFERENCES livres(id)
 );
