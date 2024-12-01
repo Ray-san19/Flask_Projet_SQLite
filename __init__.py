@@ -146,7 +146,7 @@ def supprimer_livre(id):
 
 @app.route('/emprunt_livre', methods=['GET'])
 def emprunt_livre():
-    return render_template('emprunt_livres.html')
+    return render_template('formulaire_livres_emprunt.html')
 
 @app.route('/emprunt_livre', methods=['POST'])
 def emprunter_livre(): 
