@@ -2,7 +2,7 @@ from flask import Flask, render_template_string, render_template, jsonify, reque
 from flask import render_template
 from flask import json
 from urllib.request import urlopen
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename 
 import sqlite3
 
 app = Flask(__name__)                                                                                                                  
@@ -155,7 +155,7 @@ def emprunter_livre():
         livre_id = request.form['livre_id']
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO emprunt (user_id, livre_id) VALUES (?, ?)', (user_id, livre_id))
+        cursor.execute('INSERT INTO emprunt (created, user_id, livre_id, return_date) VALUES (?, ?)', ("MTN", user_id, livre_id, "A définir))
         conn.commit()
         conn.close()
         return redirect(url_for('consultation_livres_emprunt'))
