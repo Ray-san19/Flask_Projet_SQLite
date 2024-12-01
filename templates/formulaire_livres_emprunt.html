@@ -6,14 +6,14 @@
     <title>Formulaire d'enregistrement d'un nouvel emprunt</title>
 </head>
 <body>
-    <h1>Enregistrer un nouveau client</h1>
+    <h1>Enregistrer un nouvel emprunt</h1>
     <form action="./emprunter_livres" method="POST">
-        <label for="nom">Nom :</label>
+        <label for="nom">Nom du livre :</label>
         <input type="text" id="nom" name="nom" required><br><br>
-        <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required><br>
-        <label for="prenom">book_id :</label>
-        <input type="text" id="prenom" name="prenom" required><br><br>
+        <label for="prenom">Utilisateur:</label>
+        <input type="text" id="user_id" name="user_id" required><br>
+        <label for="prenom">Livre à emprunter :</label>
+        <input type="text" id="livre_id" name="livre_id" required><br><br>
         <button type="submit">Enregistrer</button>
     </form>
 </body>
