@@ -133,11 +133,11 @@ def consultation_livres():
     conn.close()
     return render_template('read_data_livres.html', data=data)
  
-@app.route('/supprimer_livre<int:id>')
-def supprimer_livre(id):
+@app.route('/supprimer_livre/<nom>')
+def supprimer_livre(nom):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM livres WHERE id = ?', (id,))
+    cursor.execute('DELETE FROM livres WHERE nom = ?', (nom,))
     conn.commit()
     conn.close()
 
