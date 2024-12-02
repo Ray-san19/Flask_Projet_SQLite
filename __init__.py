@@ -118,7 +118,7 @@ def enregistrer_livres():
         cursor.execute('INSERT INTO livres (nom) VALUES (?)', (nom,))
         conn.commit()
         conn.close()
-
+ 
         return redirect(url_for('consultation_livres'))
 
 
@@ -133,11 +133,11 @@ def consultation_livres():
     conn.close()
     return render_template('read_data_livres.html', data=data)
  
-@app.route('/supprimer_livre/<nom>')
-def supprimer_livre(nom):
+@app.route('/supprimer_livre/<lnom>')
+def supprimer_livre(lnom):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM livres WHERE nom = ?', (nom,))
+    cursor.execute('DELETE FROM livres WHERE nom = ?', (lnom,))
     conn.commit()
     conn.close()
 
