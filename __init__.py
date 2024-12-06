@@ -169,7 +169,7 @@ def retourner_livre(livre_id):
         cursor = conn.cursor()
 
         # Mettre à jour l'emprunt avec la date de retour
-        cursor.execute('UPDATE emprunts SET date_retour = ? WHERE client_id = ? AND livre_id = ? AND date_retour IS NULL',(datetime.now(), client_id, livre_id))
+        cursor.execute('UPDATE emprunt SET date_retour = ? WHERE client_id = ? AND livre_id = ? AND date_retour IS NULL',(datetime.now(), client_id, livre_id))
         conn.commit()
         conn.close()
         return redirect(url_for('consultation_livres_emprunt'))
@@ -179,7 +179,7 @@ def consultation_livres_emprunt():
     # Récupérer tous les livres depuis la base de données
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM livres')
+    cursor.execute('SELECT * FROM emprunt')
     data = cursor.fetchall()
     conn.close()
     return render_template('read_data_emprunt.html', data=data)
