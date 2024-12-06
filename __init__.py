@@ -1,4 +1,4 @@
-lefrom flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
+from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
 from flask import render_template
 from flask import json
 from urllib.request import urlopen
@@ -22,7 +22,6 @@ def hello_world():
 @app.route('/lecture')
 def lecture():
     if est_authentifie():
-        # Rediriger vers la page d'authentification si l'utilisateur n'est pas authentifié
         return "<h2>Bravo, vous êtes authentifié</h2>    
     elif  estauthentifie():
         return "<h2>Bravo, vous êtes authentifié pour user</h2>"
