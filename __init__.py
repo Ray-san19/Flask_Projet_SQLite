@@ -109,7 +109,7 @@ def enregistrer_livres():
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         cursor.execute('SELECT * from livres where nom = ?', (nom, ))
-        data = cursor.fetchall()
+        data = cursor.fetchone()
         if data == None:
            cursor.execute('INSERT INTO livres (nom, quantité) VALUES (?, ?)', (nom, 1))
         else:
