@@ -162,62 +162,19 @@ def emprunter_livre():
     
 # --- Nouvelle route pour retourner un livre ---
 @app.route('/retourner/<int:livre_id>')
-# def retourner_livre(livre_id):
-#    if estauthentifie():
- #       client_id = session['user_id']
-  #      conn = sqlite3.connect('database.db')
-   #     cursor = conn.cursor()
-#
- #       # Mettre à jour l'emprunt avec la date de retour
-  #      cursor.execute('UPDATE emprunt SET date_retour = ? WHERE client_id = ? AND livre_id = ? AND date_retour IS NULL',(datetime.now(), client_id, livre_id))
-   #     conn.commit()
-    #    conn.close()
-     #   return redirect(url_for('consultation_livres_emprunt'))
+ def retourner_livre(livre_id):
+    if estauthentifie():
+        client_id = session['user_id']
+        livre_id = request.form['livre_id']
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
 
-@app.route('/retourner_livre', methods=['POST'])
-def retourner_livre():
-    if request.method == 'POST':
-        # Retrieve user_id and livre_id from the form data
-        user_id = request.form.get('user_id')
-        livre_id = request.form.get('livre_id')
+        # Mettre à jour l'emprunt avec la date de retour
+        cursor.execute('UPDATE emprunt SET date_retour = ? WHERE client_id = ? AND livre_id = ? AND date_retour IS NULL',(datetime.now(), client_id, livre_id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('consultation_livres_emprunt'))
 
-        # Validate that user_id and livre_id are provided
-        if not user_id or not livre_id:
-            return jsonify({"error": "User ID and Book ID are required"}), 400
-
-        try:
-            # Get the current date and time to mark the return date
-            return_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-            # Connect to the SQLite database
-            conn = sqlite3.connect('database.db')
-            cursor = conn.cursor()
-
-            # Update the 'return_date' in the 'emprunt' table to the current date for the specific user_id and livre_id
-            cursor.execute(
-                '''
-                UPDATE emprunt 
-                SET return_date = ? 
-                WHERE user_id = ? AND livre_id = ? AND return_date = "A définir"
-                ''', 
-                (return_date, user_id, livre_id)
-            )
-
-            # Commit the transaction
-            conn.commit()
-
-            # Check if any rows were affected (to ensure the book was actually borrowed by this user)
-            if cursor.rowcount == 0:
-                return jsonify({"error": "No record found or book already returned"}), 404
-
-            conn.close()
-
-            # Return a success message as JSON
-            return jsonify({"message": "Book returned successfully", "user_id": user_id, "livre_id": livre_id, "return_date": return_date}), 200
-
-        except sqlite3.Error as e:
-            # Handle any SQLite error
-            return jsonify({"error": f"An error occurred: {e}"}), 500
          
 @app.route('/consultation_livres_emprunt')
 def consultation_livres_emprunt():
