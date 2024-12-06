@@ -108,8 +108,13 @@ def enregistrer_livres():
         nom = request.form['nom']  
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO livres (nom) VALUES (?)', (nom,))
-        conn.commit()
+        cursor.execute('SELECT * from livres where nom = ?', (nom, ))
+        data = cursor.fetchall()
+        if data == None:
+           cursor.execute('INSERT INTO livres (nom, quantité) VALUES (?, ?)', (nom, 1))
+        else:
+           cursor.execute('UPDATE livres SET quantité = quantité + 1 WHERE nom = ?', (nom, ))  
+        conn.commit()      
         conn.close()
  
         return redirect(url_for('consultation_livres'))
