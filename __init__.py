@@ -162,17 +162,17 @@ def emprunter_livre():
     
 # --- Nouvelle route pour retourner un livre ---
 @app.route('/retourner/<int:livre_id>')
-#def retourner_livre(livre_id):
-    if estauthentifie():
-        client_id = session['user_id']
-        conn = sqlite3.connect('database.db')
-        cursor = conn.cursor()
-
-        # Mettre à jour l'emprunt avec la date de retour
-        cursor.execute('UPDATE emprunt SET date_retour = ? WHERE client_id = ? AND livre_id = ? AND date_retour IS NULL',(datetime.now(), client_id, livre_id))
-        conn.commit()
-        conn.close()
-        return redirect(url_for('consultation_livres_emprunt'))
+# def retourner_livre(livre_id):
+#    if estauthentifie():
+ #       client_id = session['user_id']
+  #      conn = sqlite3.connect('database.db')
+   #     cursor = conn.cursor()
+#
+ #       # Mettre à jour l'emprunt avec la date de retour
+  #      cursor.execute('UPDATE emprunt SET date_retour = ? WHERE client_id = ? AND livre_id = ? AND date_retour IS NULL',(datetime.now(), client_id, livre_id))
+   #     conn.commit()
+    #    conn.close()
+     #   return redirect(url_for('consultation_livres_emprunt'))
 
 @app.route('/retourner_livre', methods=['POST'])
 def retourner_livre():
