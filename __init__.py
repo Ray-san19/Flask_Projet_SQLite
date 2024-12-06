@@ -135,7 +135,10 @@ def consultation_livres():
 def supprimer_livre(lnom):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM livres WHERE nom = ?', (lnom,))
+    cursor.execute('SELECT quantité from livres where nom = ?', (lnom, ))
+    data = cursor.fetchone()[0]
+    if data != 0: 
+       cursor.execute('UPDATE livres SET quantité = quantité - 1 WHERE nom = ?', (lnom, ))
     conn.commit()
     conn.close()
 
