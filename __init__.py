@@ -155,7 +155,7 @@ def emprunter_livre():
         livre_id = request.form['livre_id']
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO emprunt (user_id, livre_id, return_date) VALUES (?, ?, ?, ?)', (user_id, livre_id, "A définir"))
+        cursor.execute('INSERT INTO emprunt (user_id, livre_id, return_date) VALUES (?, ?, ?)', (user_id, livre_id, "A définir"))
         conn.commit()
         conn.close()
         return redirect(url_for('consultation_livres_emprunt'))
