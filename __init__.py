@@ -22,7 +22,7 @@ def hello_world():
 @app.route('/lecture')
 def lecture():
     if est_authentifie():
-        return "<h2>Bravo, vous êtes authentifié</h2>    
+        return "<h2>Bravo, vous êtes authentifié</h2>"    
     elif  estauthentifie():
         return "<h2>Bravo, vous êtes authentifié pour user</h2>"
     else:
