@@ -162,7 +162,7 @@ def emprunter_livre():
     
 # --- Nouvelle route pour retourner un livre ---
 @app.route('/retourner/<int:livre_id>')
- def retourner_livre(livre_id):
+def retourner_livre(livre_id):
     if estauthentifie():
         client_id = session['user_id']
         livre_id = request.form['livre_id']
