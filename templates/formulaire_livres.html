@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Formulaire d'enregistrement d'un nouveau livre</title>
 </head>
-<body>
-    <h1>Enregistrer un nouveau livre</h1>
+<body class="body">
+    <h1 class="form container">Enregistrer un nouveau livre</h1>
     <form action="./enregistrer_livres" method="POST">
         <label for="nom">Nom du livre :</label>
         <input type="text" id="nom" name="nom" required><br><br>
