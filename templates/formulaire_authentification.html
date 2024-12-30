@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentification</title>
+    <link href="static/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+  <div class="container">
     <h2>Authentification</h2>
     {% if error %}
         <p style="color: red;">Identifiant ou mot de passe incorrect.</p>
@@ -17,5 +19,6 @@
         <input type="password" id="password" name="password"><br><br>
         <input type="submit" value="Se connecter">
     </form>
+  </div>
 </body>
 </html>
