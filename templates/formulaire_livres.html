@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="./static/style.css" rel="stylesheet" type="text/css">
     <title>Formulaire d'enregistrement d'un nouveau livre</title>
 </head>
-<body class="body">
+<body>
     <h1 class="form container">Enregistrer un nouveau livre</h1>
-    <form action="./enregistrer_livres" method="POST">
+    <form class="" action="./enregistrer_livres" method="POST">
         <label for="nom">Nom du livre :</label>
         <input type="text" id="nom" name="nom" required><br><br>
         <button type="submit">Enregistrer</button>
