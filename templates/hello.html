@@ -9,7 +9,38 @@
     <title>Bibliothèque</title> 
 </head>
 <body>
-  
+  <style>
+       imagedefond {
+            /* Utilisation de l'image comme arrière-plan */
+            background-image: url('library picture.jpg');
+            background-size: cover; /* Ajuste l'image pour couvrir tout le fond */
+            background-repeat: no-repeat; /* Empêche la répétition de l'image */
+            background-attachment: fixed; /* Fixe l'image pour qu'elle ne défile pas avec le contenu */
+            background-position: center; /* Centre l'image */
+            margin: 0; /* Supprime les marges par défaut du body */
+            height: 100vh; /* Assure que le body prend toute la hauteur de la fenêtre */
+        }
+
+        .library-book {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #4B0082; /* Couleur violet foncé pour le texte */
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .library-welcome {
+            font-style: italic;
+            color: #8B008B;
+        }
+    </style>
     <div>
         <h1>Hello, World!</h1>
         <p>Bienvenue dans la bibliothèque</p>
