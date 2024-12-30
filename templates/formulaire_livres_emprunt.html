@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire d'enregistrement d'un nouvel emprunt</title>
+    <link href="static/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+  <div class="container">
     <h1>Enregistrer un nouvel emprunt</h1>
     <form action="./emprunt_livre" method="POST">
         <label for="prenom">Utilisateur:</label>
@@ -14,5 +16,6 @@
         <input type="text" id="livre_id" name="livre_id" required><br><br>
         <button type="submit">Enregistrer</button>
     </form>
+  </div>
 </body>
 </html>
