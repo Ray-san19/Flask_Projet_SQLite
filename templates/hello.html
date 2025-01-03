@@ -1,23 +1,20 @@
-
 <!DOCTYPE html>
-<html lang="fr" style="background: url(static/librarypicture.jpg) cover center center no-repeat fixed;"> 
-  <div>  
+<html lang="fr" class="imagedefond"> <!-- Ajout de la classe ici -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="static/style.css" rel="stylesheet" type="text/css">
     <title>Bibliothèque</title> 
-</head>
-      <style>
-       imagedefond {
+    <style>
+        .imagedefond {
             /* Utilisation de l'image comme arrière-plan */
-            background-image: url("static/library picture.jpg");
+            background-image: url("static/librarypicture.jpg");
             background-size: cover; /* Ajuste l'image pour couvrir tout le fond */
             background-repeat: no-repeat; /* Empêche la répétition de l'image */
             background-attachment: fixed; /* Fixe l'image pour qu'elle ne défile pas avec le contenu */
             background-position: center; /* Centre l'image */
-            margin: 0; /* Supprime les marges par défaut du body */
-            height: 100vh; /* Assure que le body prend toute la hauteur de la fenêtre */
+            margin: 0; /* Supprime les marges par défaut */
+            height: 100vh; /* Assure que l'élément prend toute la hauteur de la fenêtre */
         }
 
         .library-book {
@@ -40,6 +37,7 @@
             color: #8B008B;
         }
     </style>
+</head>
 <body>
   <div class="content">
     <div class="library-book">
@@ -48,6 +46,4 @@
     </div>
   </div>
 </body>
- </div>   
 </html>
-
