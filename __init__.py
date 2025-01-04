@@ -70,7 +70,7 @@ def fiche_nom(post_nom):
         
         return render_template('read_data.html', data=data)
 
-@app.route('/consultation/')
+@app.route('/consultation')
 def ReadBDD():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
