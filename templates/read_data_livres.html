@@ -19,9 +19,17 @@
             font-family: 'Arial', sans-serif;
             color: #333;
         }
+        div {
+            display: flex; /* Active Flexbox */
+            justify-content: center; /* Centre horizontalement */
+            align-items: center; /* Centre verticalement */
+            margin: 0; /* Supprime les marges par défaut */
+            background-color: #f0f0f5; /* Couleur de fond douce */
+        }
     </style>
 <body>
     <h2>Liste des livres</h2>
+    <div>
     <table aria-label="Liste des livres disponibles">
         <tr>
             <th>ID</th>
@@ -36,6 +44,7 @@
         </tr>
         {% endfor %}
     </table>
+    </div>
 </body>
 </html>
 <footer style="text-align: center; color: white; margin-top: 20px;">
