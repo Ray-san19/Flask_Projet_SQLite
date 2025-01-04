@@ -165,7 +165,7 @@ th {
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9; /* Couleur alternée pour les lignes */
+    background-color: #f4f4f9; /* Couleur alternée pour les lignes */
 }
 
 tr:hover {
