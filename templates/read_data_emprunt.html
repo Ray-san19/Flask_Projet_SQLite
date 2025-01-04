@@ -10,10 +10,18 @@
             margin: 0; /* Supprime les marges par défaut */
             height: 100vh; /* Assure que l'élément prend toute la hauteur de la fenêtre */
         }
+        div {
+            display: flex; /* Active Flexbox */
+            justify-content: center; /* Centre horizontalement */
+            align-items: center; /* Centre verticalement */
+            margin: 0; /* Supprime les marges par défaut */
+            background-color: #f0f0f5; /* Couleur de fond douce */
+        }
     </style>
 <body>
 <title>Listes</title>
     <h2>Listes des livres empruntés</h2>
+    <div>
 <table>
         <tr>
             <th>ID</th>
@@ -32,4 +40,5 @@
         </tr>
     {% endfor %}
 </table>
+ </div>   
 </body>
