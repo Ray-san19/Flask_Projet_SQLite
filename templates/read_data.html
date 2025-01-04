@@ -16,9 +16,14 @@
             margin: 0; /* Supprime les marges par défaut */
             height: 100vh; /* Assure que l'élément prend toute la hauteur de la fenêtre */
         }
+        div {
+            display: flex;
+        }
+    
     </style>
 <body>
     <h2>Liste des Clients</h2>
+    <div>
     <table>
         <tr>
             <th>ID</th>
@@ -37,5 +42,6 @@
         </tr>
         {% endfor %}
     </table>
+    </div>
 </body>
 </html>
