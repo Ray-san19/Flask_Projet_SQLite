@@ -1,3 +1,16 @@
+<style>
+        body {
+            /* Utilisation de l'image comme arrière-plan */
+            background-image: url("/static/librarypicture.jpg");
+            background-size: cover; /* Ajuste l'image pour couvrir tout le fond */
+            background-repeat: no-repeat; /* Empêche la répétition de l'image */
+            background-attachment: fixed; /* Fixe l'image pour qu'elle ne défile pas avec le contenu */
+            background-position: center; /* Centre l'image */
+            margin: 0; /* Supprime les marges par défaut */
+            height: 100vh; /* Assure que l'élément prend toute la hauteur de la fenêtre */
+        }
+    </style>
+<body>
 <title>Client</title>
 <table>
     <tr>
@@ -17,3 +30,4 @@
         </tr>
     {% endfor %}
 </table>
+</body>
