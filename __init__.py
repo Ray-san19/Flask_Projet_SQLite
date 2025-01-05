@@ -157,6 +157,7 @@ def emprunter_livre():
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         cursor.execute('INSERT INTO emprunt (user_id, livre_id) VALUES (?, ?)', (user_id, livre_id))
+        cursor.execute('UPDATE livres SET quantité = quantité - 1 WHERE nom = ?', (livre_id, ))
         conn.commit()
         conn.close()
         return redirect(url_for('consultation_livres_emprunt'))
@@ -167,7 +168,6 @@ def retourner_livre(id):
     if estauthentifie():
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-
         # Mettre à jour l'emprunt avec la date de retour
         cursor.execute('UPDATE emprunt SET return_date = CURRENT_TIMESTAMP WHERE id = ?', (id, ))
         conn.commit()
