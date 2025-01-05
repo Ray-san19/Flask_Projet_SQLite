@@ -163,9 +163,10 @@ def emprunter_livre():
         return redirect(url_for('consultation_livres_emprunt'))
     
 # --- Nouvelle route pour retourner un livre ---
-@app.route('/retourner/<int:id>')
+@app.route('/retourner/<int:id>', methods=['POST'])
 def retourner_livre(id):
-    if estauthentifie():
+    if estauthentifie() and methods=['POST']:
+        livre_id = request.form['livre_id']
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         # Mettre à jour l'emprunt avec la date de retour
