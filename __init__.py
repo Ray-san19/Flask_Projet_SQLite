@@ -166,7 +166,6 @@ def emprunter_livre():
 @app.route('/retourner/<int:id>/<livre_id>')
 def retourner_livre(id, livre_id):
     if estauthentifie():
-        livre_id = request.form['livre_id']
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         # Mettre à jour l'emprunt avec la date de retour
