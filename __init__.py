@@ -170,6 +170,7 @@ def retourner_livre(id):
         cursor = conn.cursor()
         # Mettre à jour l'emprunt avec la date de retour
         cursor.execute('UPDATE emprunt SET return_date = CURRENT_TIMESTAMP WHERE id = ?', (id, ))
+        cursor.execute('UPDATE livres SET quantité = quantité + 1 WHERE nom = ?', (livre_id, ))
         conn.commit()
         conn.close()
         return redirect(url_for('consultation_livres_emprunt'))
