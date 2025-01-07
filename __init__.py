@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
+from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, sessione
 from flask import render_template
 from flask import json
 from urllib.request import urlopen
@@ -156,10 +156,21 @@ def emprunter_livre():
         livre_id = request.form['livre_id']
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO emprunt (user_id, livre_id) VALUES (?, ?)', (user_id, livre_id))
-        cursor.execute('UPDATE livres SET quantité = quantité - 1 WHERE nom = ?', (livre_id, ))
-        conn.commit()
-        conn.close()
+        result = cursor.fetchone()
+        if result is None:
+            conn.close()
+            return "Livre introuvable", 404
+
+        quantité = result[0]
+
+        if quantité == 0:
+            conn.close()
+            return "Ce livre n'est plus disponible", 400
+        else:    
+            cursor.execute('INSERT INTO emprunt (user_id, livre_id) VALUES (?, ?)', (user_id, livre_id))
+            cursor.execute('UPDATE livres SET quantité = quantité - 1 WHERE nom = ?', (livre_id, ))
+            conn.commit()
+            conn.close()
         return redirect(url_for('consultation_livres_emprunt'))
     
 # --- Nouvelle route pour retourner un livre ---
