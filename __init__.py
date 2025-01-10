@@ -159,7 +159,7 @@ def emprunter_livre():
         result = cursor.fetchone()
         if result is None:
             conn.close()
-            return "Le livre que vous voulez emprunter est introuvable", 404
+            return "Le livre que vous voulez emprunter est introuvable ou est manquant", 404
 
         quantité = result[0]
 
