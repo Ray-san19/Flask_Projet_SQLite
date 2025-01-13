@@ -15,7 +15,17 @@
     padding: 20px; /* Espacement autour du contenu */
     line-height: 1.6; /* Espacement entre les lignes */
 }
-
+    .route {
+            display: inline-block; /* Permet d'adapter la taille au contenu */
+            background-color: #e3f2fd; /* Fond bleu clair */
+            color: #0d47a1; /* Texte bleu foncé */
+            padding: 5px 10px; /* Espacement interne */
+            margin: 5px 0; /* Espacement externe entre les blocs */
+            border-radius: 5px; /* Coins arrondis */
+            font-weight: bold; /* Texte en gras */
+            font-family: monospace; /* Police de type code */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre douce */
+        }
 p {
     margin: 10px 0; /* Espacement entre les paragraphes */
     padding: 10px; /* Espacement interne */
@@ -61,14 +71,14 @@ p a {
 
   </style>
 <body>
-  <p>/authentification Pour vous connecter en tant qu’<a href="https://rayane2.alwaysdata.net/authentification">utilisateur simple ou utilisateur avancée</a></p>
-  <p>/fiche_client/<int:post_id> Pour avoir accès aux <a href="https://rayane2.alwaysdata.net/consultation">clients enregistrés</a></p>
-  <p>/fiche_nom/<post_nom> Pour rechercher un client dans la base de données</p>
-  <p>/enregistrer_client Pour <a href="https://rayane2.alwaysdata.net/enregistrer_client">enregistrer un nouveau client</a></p>
-  <p>/enregistrer_livres pour <a href="https://rayane2.alwaysdata.net/enregistrer_livres">enregistrer un nouveau livre</a></p>
-  <p>/supprimer_livre/<lnom> Pour supprimer un client</p>
-  <p>/emprunt_livre Pour <a href="https://rayane2.alwaysdata.net/emprunt_livre">emprunter un livre</a></p>
-  <p>/retourner/<int:id> Pour retourner un livre</p>
-  <p>/consultation_livres_emprunt Pour <a href="https://rayane2.alwaysdata.net/consultation_livres_emprunt">consulter les livres empruntés</a></p>
-  <p>/logout Pour <a href="https://rayane2.alwaysdata.net/logout">se déconnecter</a></p>
+  <p><span class="route">/authentification</span> Pour vous connecter en tant qu’<a href="https://rayane2.alwaysdata.net/authentification">utilisateur simple ou utilisateur avancée</a></p>
+  <p><span class="route">/fiche_client/<int:post_id></span> Pour avoir accès aux <a href="https://rayane2.alwaysdata.net/consultation">clients enregistrés</a></p>
+  <p><span class="route">/fiche_nom/<post_nom></span> Pour rechercher un client dans la base de données</p>
+  <p><span class="route">/enregistrer_client</span> Pour <a href="https://rayane2.alwaysdata.net/enregistrer_client">enregistrer un nouveau client</a></p>
+  <p><span class="route">/enregistrer_livres</span> pour <a href="https://rayane2.alwaysdata.net/enregistrer_livres">enregistrer un nouveau livre</a></p>
+  <p><span class="route">/supprimer_livre/<lnom></span> Pour supprimer un client</p>
+  <p><span class="route">/emprunt_livre</span> Pour <a href="https://rayane2.alwaysdata.net/emprunt_livre">emprunter un livre</a></p>
+  <p><span class="route">/retourner/<int:id></span> Pour retourner un livre</p>
+  <p><span class="route">/consultation_livres_emprunt</span> Pour <a href="https://rayane2.alwaysdata.net/consultation_livres_emprunt">consulter les livres empruntés</a></p>
+  <p><span class="route">/logout</span> Pour <a href="https://rayane2.alwaysdata.net/logout">se déconnecter</a></p>
 </body>
