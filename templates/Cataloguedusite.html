@@ -59,6 +59,32 @@ p a {
     margin-top: 5px; /* Espacement au-dessus des liens */
 }
 
+.intro {
+    background-color: #f9f7f1; /* Fond doux et chaleureux */
+    color: #6c5b7b; /* Texte violet-gris élégant */
+    padding: 20px;
+    margin-bottom: 30px;
+    border-left: 4px solid #d1a455; /* Bordure dorée */
+    font-family: 'Georgia', serif; /* Police classique */
+}
+
+.intro h1 {
+    font-size: 2rem;
+    color: #4a3f35; /* Texte plus sombre pour le titre */
+}
+
+.intro p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.intro blockquote {
+    font-style: italic;
+    color: #8c6f53; /* Couleur légèrement différente pour la citation */
+    margin-top: 15px;
+}
+
+
 @media (max-width: 768px) {
     body {
         padding: 10px; /* Réduit le padding pour les petits écrans */
@@ -71,6 +97,12 @@ p a {
 
   </style>
 <body>
+    <div class="intro">
+        <h1>Bienvenue à notre Bibliothèque Virtuelle</h1>
+        <p>Plongez dans un monde de découvertes, où chaque livre raconte une histoire et chaque titre ouvre les portes de l'imaginaire...</p>
+        <blockquote>« Une pièce sans livres est comme un corps sans âme. » – Cicéron</blockquote>
+    </div>
+
   <p><span class="route">/authentification</span> Pour vous connecter en tant qu’<a href="https://rayane2.alwaysdata.net/authentification">utilisateur simple ou utilisateur avancée</a></p>
   <p><span class="route">/fiche_client/<int:post_id></span> Pour avoir accès aux <a href="https://rayane2.alwaysdata.net/consultation">clients enregistrés</a></p>
   <p><span class="route">/fiche_nom/<post_nom></span> Pour rechercher un client dans la base de données</p>
