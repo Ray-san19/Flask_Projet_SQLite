@@ -197,6 +197,10 @@ def consultation_livres_emprunt():
     conn.close()
     return render_template('read_data_emprunt.html', data=data)
 
+@app.route('/Cataloguedusite.html')
+def cataloguedusite():
+    return render_template('Cataloguedusite.html') 
+
 @app.route('/logout')
 def logout():
     session.clear()
