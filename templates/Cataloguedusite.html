@@ -1,10 +1,74 @@
-<p>/authentification Pour vous connecter en tant qu’<a href="https://rayane2.alwaysdata.net/authentification">utilisateur simple ou utilisateur avancée</a></p>
-<p>/fiche_client/<int:post_id> Pour avoir accès aux <a href="https://rayane2.alwaysdata.net/consultation">clients enregistrés</a></p>
-<p>/fiche_nom/<post_nom> Pour rechercher un client dans la base de données</p>
-<p>/enregistrer_client Pour <a href="https://rayane2.alwaysdata.net/enregistrer_client">enregistrer un nouveau client</a></p>
-<p>/enregistrer_livres pour <a href="https://rayane2.alwaysdata.net/enregistrer_livres">enregistrer un nouveau livre</a></p>
-<p>/supprimer_livre/<lnom> Pour supprimer un client</p>
-<p>/emprunt_livre Pour <a href="https://rayane2.alwaysdata.net/emprunt_livre">emprunter un livre</a></p>
-<p>/retourner/<int:id> Pour retourner un livre</p>
-<p>/consultation_livres_emprunt Pour <a href="https://rayane2.alwaysdata.net/consultation_livres_emprunt">consulter les livres empruntés</a></p>
-<p>/logout Pour <a href="https://rayane2.alwaysdata.net/logout">se déconnecter</a></p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+  <style>
+    body {
+    font-family: Arial, sans-serif; /* Police moderne et lisible */
+    background-color: #f8f9fa; /* Couleur de fond douce */
+    color: #343a40; /* Couleur de texte principale */
+    margin: 0;
+    padding: 20px; /* Espacement autour du contenu */
+    line-height: 1.6; /* Espacement entre les lignes */
+}
+
+p {
+    margin: 10px 0; /* Espacement entre les paragraphes */
+    padding: 10px; /* Espacement interne */
+    background-color: #ffffff; /* Fond blanc des paragraphes */
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+a {
+    color: #007bff; /* Couleur des liens (bleu classique) */
+    text-decoration: none; /* Supprime le soulignement par défaut */
+    font-weight: bold; /* Mets les liens en gras */
+}
+
+a:hover {
+    text-decoration: underline; /* Ajoute un soulignement au survol */
+    color: #0056b3; /* Change la couleur au survol */
+}
+
+a:active {
+    color: #004085; /* Couleur des liens lorsqu'ils sont cliqués */
+}
+
+a:visited {
+    color: #6c757d; /* Couleur des liens déjà visités */
+}
+
+p a {
+    display: inline-block; /* Permet aux liens de s'adapter aux bordures des paragraphes */
+    margin-top: 5px; /* Espacement au-dessus des liens */
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Réduit le padding pour les petits écrans */
+    }
+
+    p {
+        padding: 8px; /* Réduit l'espacement interne des paragraphes */
+    }
+}
+
+  </style>
+<body>
+  <p>/authentification Pour vous connecter en tant qu’<a href="https://rayane2.alwaysdata.net/authentification">utilisateur simple ou utilisateur avancée</a></p>
+  <p>/fiche_client/<int:post_id> Pour avoir accès aux <a href="https://rayane2.alwaysdata.net/consultation">clients enregistrés</a></p>
+  <p>/fiche_nom/<post_nom> Pour rechercher un client dans la base de données</p>
+  <p>/enregistrer_client Pour <a href="https://rayane2.alwaysdata.net/enregistrer_client">enregistrer un nouveau client</a></p>
+  <p>/enregistrer_livres pour <a href="https://rayane2.alwaysdata.net/enregistrer_livres">enregistrer un nouveau livre</a></p>
+  <p>/supprimer_livre/<lnom> Pour supprimer un client</p>
+  <p>/emprunt_livre Pour <a href="https://rayane2.alwaysdata.net/emprunt_livre">emprunter un livre</a></p>
+  <p>/retourner/<int:id> Pour retourner un livre</p>
+  <p>/consultation_livres_emprunt Pour <a href="https://rayane2.alwaysdata.net/consultation_livres_emprunt">consulter les livres empruntés</a></p>
+  <p>/logout Pour <a href="https://rayane2.alwaysdata.net/logout">se déconnecter</a></p>
+</body>
