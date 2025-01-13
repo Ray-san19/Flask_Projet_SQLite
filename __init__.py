@@ -204,7 +204,7 @@ def cataloguedusite():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('authentification'))
+    return redirect(url_for('heloo_world'))
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
